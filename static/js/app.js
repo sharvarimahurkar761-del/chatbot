@@ -39,6 +39,10 @@
   window.addEventListener('load', ensureModelIcons);
 
   let selectedModel = localStorage.getItem('shiva-selected-model') || 'bhairava';
+  if (selectedModel === 'akshara' || selectedModel === 'reranker') {
+    selectedModel = selectedModel === 'akshara' ? 'durga' : 'bhairava';
+    localStorage.setItem('shiva-selected-model', selectedModel);
+  }
   let sidebarCollapsed = localStorage.getItem('shiva-sidebar-collapsed') === 'true';
   let deepAnalysisEnabled = false;
   
@@ -51,7 +55,21 @@
     'Summarize the latest AI research trends'
   ];
 
+  function normalizeModelName(modelName) {
+    const normalized = String(modelName || '').trim().toLowerCase();
+    return normalized === 'akshara' ? 'durga' : normalized;
+  }
+
+  function shouldHideModel(modelName) {
+    return String(modelName || '').trim().toLowerCase() === 'reranker';
+  }
+
   function updateModelSelection() {
+    if (modelItems.length && !modelItems.some((item) => !item.hidden && item.dataset.model === selectedModel)) {
+      selectedModel = modelItems.find((item) => !item.hidden)?.dataset.model || selectedModel;
+      localStorage.setItem('shiva-selected-model', selectedModel);
+    }
+
     const modelText = selectedModel.toUpperCase();
     modelToggleButton.textContent = `${modelText} ▼`;
     modelItems.forEach((item) => {
@@ -76,20 +94,26 @@
       }
 
       // Generate HTML for each model
+      const seenModels = new Set();
       const modelsHtml = models.map((model, index) => {
         const modelName = model.id || model.model || '';
-        const modelNameLower = modelName.toLowerCase();
-        const modelNameUpper = modelName.toUpperCase();
+        if (shouldHideModel(modelName)) return '';
+
+        const modelNameLower = normalizeModelName(modelName);
+        if (!modelNameLower || seenModels.has(modelNameLower)) return '';
+        seenModels.add(modelNameLower);
+
+        const displayNameUpper = modelNameLower.toUpperCase();
+        const subtitle = modelNameLower === 'durga' ? 'General purpose AI assistant' : (model.description || model.name || 'AI Model');
         const isActive = index === 0 ? 'active' : '';
-        if(modelNameUpper ==="RERANKER" || modelNameUpper ==="AKSHARA") return ''; // Skip Reranker and Embedding models
         return `
           <div class="model-item ${isActive}" data-model="${modelNameLower}">
             <div class="model-item-icon">
-              <img src="./static/assets/${modelNameLower}.png" alt="${modelNameUpper} icon" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')" />
+              <img src="./static/assets/${modelNameLower}.png" alt="${displayNameUpper} icon" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')" />
             </div>
             <div class="model-item-info">
-              <div class="model-item-title">${escapeHtml(modelNameUpper)}</div>
-              <div class="model-item-subtitle">${escapeHtml(model.description || model.name || 'AI Model')}</div>
+              <div class="model-item-title">${escapeHtml(displayNameUpper)}</div>
+              <div class="model-item-subtitle">${escapeHtml(subtitle)}</div>
             </div>
             <div class="model-item-actions">
               <span class="model-action" data-modelname="${modelNameLower}">♥</span>
