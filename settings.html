@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./public/favicon.svg">
+    <link rel="stylesheet" href="./static/css/app.css">
+    <title>Shiva Settings</title>
+  </head>
+  <body>
+    <div class="settings-shell">
+      <header class="settings-header">
+        <div class="settings-title-wrapper">
+          <span class="settings-mark">⚙</span>
+          <div>
+            <p class="eyebrow">Settings</p>
+            <h1>General</h1>
+          </div>
+        </div>
+        <a class="primary-button link-button" href="./index.html">Back to chat</a>
+      </header>
+
+      <div class="settings-layout">
+        <aside class="settings-sidebar">
+          <nav class="settings-nav" aria-label="Settings sections">
+            <button class="settings-nav-item active" type="button">General</button>
+            <button class="settings-nav-item" type="button">Display</button>
+            <button class="settings-nav-item" type="button">Sampling</button>
+            <button class="settings-nav-item" type="button">Penalties</button>
+            <button class="settings-nav-item" type="button">Agentic</button>
+            <button class="settings-nav-item" type="button">Import/Export</button>
+            <button class="settings-nav-item" type="button">Developer</button>
+          </nav>
+        </aside>
+
+        <main class="settings-panel">
+          <form id="settingsForm" class="settings-grid">
+            <section class="panel panel-general">
+              <div class="panel-heading">
+                <div>
+                  <p class="panel-eyebrow">General</p>
+                  <h2>Theme</h2>
+                </div>
+              </div>
+              <p class="panel-copy">Choose the color theme for the interface. You can choose between System (follows your device settings), Light, or Dark.</p>
+              <div class="theme-options">
+                <button type="button" class="pill-option" data-theme="system">System</button>
+                <button type="button" class="pill-option" data-theme="light">Light</button>
+                <button type="button" class="pill-option" data-theme="dark">Dark</button>
+              </div>
+              <select name="general.theme" hidden>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="system">System</option>
+              </select>
+            </section>
+
+            <section class="panel panel-general">
+              <div class="panel-heading">
+                <h2>Paste long text to file length</h2>
+              </div>
+              <p class="panel-copy">On pasting long text, it will be converted to a file. You can control the file length by setting the value of this parameter. Value 0 means disable.</p>
+              <label class="field-block">
+                <input name="general.pasteTextLen" type="number" min="0" step="100" placeholder="2500">
+              </label>
+            </section>
+
+            <section class="panel panel-general">
+              <label class="switch-row">
+                <input name="general.sendOnEnter" type="checkbox">
+                <div>
+                  <span class="switch-title">Send message on Enter</span>
+                  <span class="switch-description">Use Enter to send messages and Shift + Enter for new lines. When disabled, use Ctrl/Cmd + Enter.</span>
+                </div>
+              </label>
+              <label class="switch-row">
+                <input name="display.showGenStats" type="checkbox">
+                <div>
+                  <span class="switch-title">Show generation stats</span>
+                  <span class="switch-description">Display response timing and usage data below generated messages.</span>
+                </div>
+              </label>
+            </section>
+
+            <div class="settings-actions">
+              <button id="resetButton" class="secondary-button" type="button">Reset defaults</button>
+              <button class="primary-button" type="submit">Save settings</button>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="./static/js/settings-data.js"></script>
+    <script src="./static/js/settings.js"></script>
+  </body>
+</html>

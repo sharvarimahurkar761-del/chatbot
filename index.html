@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./static/css/app.css">
+    <title>Shiva Chat</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div>
+            <h1>Shiva</h1>
+            <p>AI Assistant</p>
+          </div>
+              <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Toggle sidebar">«</button>
+            </div>
+
+            <button id="newChatButton" class="primary-button" type="button" aria-label="New Chat">
+              <img src="./static/assets/new-chat-1.svg" alt="New chat" width="24" height="24" style="margin-right: 10px;" />
+              New Chat
+            </button>
+
+            <nav class="side-nav" aria-label="Primary">
+              <a class="nav-link" href="./index.html">Search</a>
+              <a class="nav-link" href="./settings.html">Chats with Models</a>
+              <a class="nav-link active" href="#">Projects</a>
+            </nav>
+            <div class="recent-section">
+              <h3 class="recent-title"><img src="./static/assets/recent-chats.svg" alt="Recent chats" width="20" height="20" style="vertical-align: middle; margin-right: 10px;" />Recent</h3>
+              <div class="recent-item">
+                <div class="recent-item-title">Debug API timeout issue</div>
+                <div class="recent-item-meta">RUDRA • 1w ago</div>
+              </div>
+              <div class="recent-item">
+                <div class="recent-item-title">Business strategy for Q4</div>
+                <div class="recent-item-meta">BHAIRAVA • 2d ago</div>
+              </div>
+            </div>
+
+</aside>
+
+      <main class="chat-layout">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Live model connection</p>
+            <h2>Chat</h2>
+          </div>
+          <a class="icon-link" href="./settings.html" aria-label="Open settings">⚙</a>
+        </header>
+
+        <section id="messages" class="messages" aria-live="polite"></section>
+
+        <form id="chatForm" class="composer">
+          <div class="composer-input-wrapper">
+              <textarea id="promptInput" rows="1" placeholder="Ask Shiva anything..."></textarea>
+              <div class="composer-toolbar">
+                <div class="composer-icon-row">
+                  <button class="composer-icon-btn" type="button" title="Attach file" aria-label="Attach file">
+                    <img src="./static/assets/upload.svg" alt="Attach file" width="20" height="20" />
+                  </button>
+                  <button class="composer-icon-btn" type="button" title="Voice" aria-label="Voice">
+                    <img src="./static/assets/voice-output.svg" alt="Voice output" width="20" height="20" />
+                  </button>
+                </div>
+                <div class="composer-right">
+                  <button id="deepAnalysisToggle" class="composer-toggle composer-analysis-toggle" type="button" aria-pressed="false">
+                    <span class="analysis-label">Deep Analysis</span>
+                    <span class="analysis-switch" aria-hidden="true">
+                      <span class="analysis-knob"></span>
+                    </span>
+                  </button>
+                  <div class="model-dropdown-wrapper">
+                    <button id="modelToggleButton" class="composer-toggle" type="button" aria-expanded="false">BHAIRAVA ▼</button>
+                    <div id="modelMenu" class="model-menu hidden" role="menu" aria-label="Model selector">
+                      <div class="model-item active" data-model="bhairava"> 
+                        <div class="model-item-icon">
+                         <img src="./static/assets/bhairava.png" alt="BHAIRAVA icon" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')" />
+                        </div>
+                        
+                        <div class="model-item-info">
+                          <div class="model-item-title">BHAIRAVA</div>
+                          <div class="model-item-subtitle">Business Holistic Artificial Intelligence for Reasoning</div>
+                        </div>
+                        <div class="model-item-actions">
+                          <span class="model-action">♥</span>
+                          <span class="model-action">⏻</span>
+                        </div>
+                      </div>
+                      <div class="model-item" data-model="akshara">
+                        <div class="model-item-icon">A</div>
+                        <div class="model-item-info">
+                          <div class="model-item-title">AKSHARA</div>
+                          <div class="model-item-subtitle">General purpose AI assistant</div>
+                        </div>
+                        <div class="model-item-actions">
+                          <span class="model-action">♥</span>
+                          <span class="model-action">⏻</span>
+                        </div>
+                      </div>
+                      <div class="model-item" data-model="ishaan">
+                        <div class="model-item-icon">
+                          <img src="./static/assets/ishaan.png" alt="ISHAAN icon" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')" />
+                        </div>
+                        <div class="model-item-info">
+                          <div class="model-item-title">ISHAAN</div>
+                          <div class="model-item-subtitle">Intelligent Synthesis and Heuristic Analysis Nexus</div>
+                        </div>
+                        <div class="model-item-actions">
+                          <span class="model-action">♥</span>
+                          <span class="model-action">⏻</span>
+                        </div>
+                      </div>
+                      <div class="model-item" data-model="nandi">
+                        <div class="model-item-icon">
+                          <img src="./static/assets/Nandi.png" alt="NANDI icon" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')" />
+                        </div>
+                        <div class="model-item-info">
+                          <div class="model-item-title">NANDI</div>
+                          <div class="model-item-subtitle">Nurturing Advanced Notions for Depth and Insight</div>
+                        </div>
+                        <div class="model-item-actions">
+                          <span class="model-action">♥</span>
+                          <span class="model-action">⏻</span>
+                        </div>
+                      </div>
+                      <div class="model-item" data-model="reranker">
+                        <div class="model-item-icon">R</div>
+                        <div class="model-item-info">
+                          <div class="model-item-title">RERANKER</div>
+                          <div class="model-item-subtitle">Ranking and retrieval optimization model</div>
+                        </div>
+                        <div class="model-item-actions">
+                          <span class="model-action">♥</span>
+                          <span class="model-action">⏻</span>
+                        </div>
+                      </div>
+                      <div class="model-item" data-model="rudra">
+                        <div class="model-item-icon">
+                          <img src="./static/assets/rudra.png" alt="RUDRA icon" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')" />
+                        </div>
+                        <div class="model-item-info">
+                          <div class="model-item-title">RUDRA</div>
+                          <div class="model-item-subtitle">Reasoning-Driven Unified Debugging and Refinement Agent</div>
+                        </div>
+                        <div class="model-item-actions">
+                          <span class="model-action">♥</span>
+                          <span class="model-action">⏻</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="composer-icon-btn" type="button" aria-label="Voice" title="Voice">
+                    <img src="./static/assets/mic.svg" alt="Microphone icon" width="20" height="20" />
+                  </button>
+                  <button id="sendButton" class="composer-icon-btn composer-send-btn" type="submit" aria-label="Send" title="Send">
+                    <img src="./static/assets/send.svg" alt="Send icon" width="20" height="20" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          <div class="composer-actions" style="display: none;">
+            <button id="stopButton" class="secondary-button" type="button" disabled>Stop</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="./static/js/settings-data.js"></script>
+    <script src="./static/js/app.js"></script>
+  </body>
+</html>

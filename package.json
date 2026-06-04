@@ -1,0 +1,11 @@
+{
+  "name": "chatbot",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "lint": "node --check static/js/settings-data.js && node --check static/js/app.js && node --check static/js/settings.js && node --check proxy.cjs && node --check proxy.js && node --check static-server.cjs",
+    "proxy": "node proxy.cjs",
+    "serve": "node static-server.cjs",
+    "start": "node proxy.cjs"
+  }
+}
