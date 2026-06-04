@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Shiva Static Chat
 
 This project is now a fully static HTML/CSS/JavaScript app. It does not use a framework, bundler, typed build step, background caching, browser databases, or simulated local replies.
@@ -37,3 +38,6 @@ On Windows PowerShell:
 $env:LLAMA_TARGET='http://localhost:4244'
 npm run proxy
 ```
+=======
+# chatbot
+>>>>>>> 3d333cf7308f09d63bebd73a74390945bbe97a39
