@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="./static/css/app.css">
     <title>Shiva Chat</title>
   </head>
@@ -51,7 +50,28 @@
           <a class="icon-link" href="./settings.html" aria-label="Open settings">⚙</a>
         </header>
 
-        <section id="messages" class="messages" aria-live="polite"></section>
+        <section id="messages" class="messages" aria-live="polite">
+          <div id="agenticConversation" class="agentic-conversation" aria-label="Agentic conversation"> 
+
+          </div>
+        <div class="empty-state" id="emptyState"> 
+
+          <h2 class="empty-state-title">How can I help you, User?</h2>
+          <p>Select a model and type a message or upload files to get started.</p>
+          <div class="startup-prompts">
+            
+        <div class="prompt-card">Explain quantum computing in simple terms</div>
+      
+        <div class="prompt-card">Write a business plan for a SaaS startup</div>
+      
+        <div class="prompt-card">Debug this Python code snippet</div>
+      
+        <div class="prompt-card">Summarize the latest AI research trends</div>
+      
+          </div>
+        </div>
+      
+        </section>
 
         <form id="chatForm" class="composer">
           <div class="composer-input-wrapper">
@@ -159,6 +179,10 @@
       </main>
     </div>
 
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="./static/js/assets.js"></script>
+    <script src="./static/js/marked.min.js"></script>
     <script src="./static/js/settings-data.js"></script>
     <script src="./static/js/app.js"></script>
   </body>
